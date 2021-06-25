@@ -1,3 +1,15 @@
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
+
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'lifepillar/vim-solarized8'
@@ -8,9 +20,10 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'easymotion/vim-easymotion'
 call plug#end()
 " Put your non-Plugin stuff after thi lin
-snoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-snoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+inoremap <expr> <Tab>   pumvisible() ? "\<C-y>" : "\<Tab>"
+inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <C-k>   pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 imap <c-.> <Plug>(asyncomplete_force_refresh)
 let g:asyncomplete_auto_completeopt = 0
 
@@ -33,14 +46,14 @@ inoremap <C-Q> <ESC>:q!<CR>
 inoremap <C-X> <ESC>:wq!<CR>
 set timeoutlen=300
 " Ignore keys
-"inoremap <up> <nop>
-"nnoremap <up> <nop>
-"inoremap <down> <nop>
-"nnoremap <down> <nop>
-"inoremap <left> <nop>
-"nnoremap <left> <nop>
-"inoremap <right> <nop>
-"nnoremap <right> <nop>
+inoremap <up> <nop>
+nnoremap <up> <nop>
+inoremap <down> <nop>
+nnoremap <down> <nop>
+inoremap <left> <nop>
+nnoremap <left> <nop>
+inoremap <right> <nop>
+nnoremap <right> <nop>
 inoremap <ESC> <nop>
 nnoremap <ESC> <nop>
 "" Fix Tmux Ctrl-Arrow is free to bind

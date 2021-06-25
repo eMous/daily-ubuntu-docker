@@ -1,5 +1,5 @@
-# echo $TERM
-# echo "step into ~/.zshrc"
+echo $TERM
+echo "step into ~/.zshrc"
 ###############################
 ### New a Tmux session
 ###############################
@@ -37,7 +37,7 @@ alias h="run-help"
 alias v="vim"
 alias d="cd ~/Desktop"
 alias ll="ls -l"
-alias history="history -500"
+alias historyall="history 0"
 alias df="df -h"
 # alias hh="ssh tom@222.195.75.84 -p 7878 -i /Users/tom/GoogleDrive/Dev/credential/lhh_sshd/lhh_sshd"
 if [[ `uname` == "Darwin" ]]; then
@@ -47,6 +47,7 @@ if [[ `uname` == "Darwin" ]]; then
 fi
 if [[ `uname` == "Linux" ]]; then
 	alias ls="ls --color=auto"
+	alias fd="fdfind"
 fi
 
 
@@ -118,6 +119,7 @@ SAVEHIST=200000
 
 
 bindkey "^h" run-help
+bindkey -M viins 'jk' vi-cmd-mode
 [[ -n ${SHOW_CONF} ]] && { echo "~/.zshrc finished!"; echo PID=$$; }
 
 
@@ -127,7 +129,6 @@ if [ -f '/Users/tom/Dev/tool/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/to
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/tom/Dev/tool/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/tom/Dev/tool/google-cloud-sdk/completion.zsh.inc'; fi
-
 
 
 export PATH=~/Library/Android/sdk/platform-tools:$PATH

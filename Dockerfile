@@ -10,8 +10,8 @@ ENV TERM xterm-256color
 RUN yes | unminimize || test $? -eq 141
 RUN apt update
 RUN DEBIAN_FRONTEND=noninteractive \
-	apt install -y sudo net-tools wget make gcc libncurses-dev vim tmux man zsh git python3 nodejs lua5.3 \
-				fzf
+	apt install -y sudo net-tools wget make gcc curl libncurses-dev vim tmux man zsh git python3 golang nodejs lua5.3 \
+				fzf cargo npm fd-find silversearcher-ag
 
 RUN useradd -ms /usr/bin/zsh tom && echo "tom: " | chpasswd && adduser tom sudo
 

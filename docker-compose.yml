@@ -1,0 +1,17 @@
+version: "3"
+services:
+  daily-ubuntu:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: devtsai/daily-ubuntu:latest
+    container_name: ubuntu-container
+    hostname: toms-docker
+    stdin_open: true
+    tty: true 
+    ports:
+      - '80:80'
+      - '10000-10050:10000-10050'
+      #    command: python3
+
+    
